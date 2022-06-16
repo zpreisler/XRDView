@@ -21,7 +21,9 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
 	slice->slicedice(190);
 	pix->setPixmap(slice->pix);
 
-	QtCharts::QChartView *chartView = ui->SpectraChartView;
+	ChartView *chartView = ui->SpectraChartView;
+	//QtCharts::QChartView *chartView = ui->SpectraChartView;
+
 	QtCharts::QChart *chart = new QtCharts::QChart();
 	QtCharts::QLineSeries *series = new QtCharts::QLineSeries();
 

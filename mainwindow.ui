@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="XRDGraphicsView">
+   <widget class="GraphicsView" name="XRDGraphicsView">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -24,11 +24,11 @@
      </rect>
     </property>
    </widget>
-   <widget class="QChartView" name="SpectraChartView">
+   <widget class="ChartView" name="SpectraChartView">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>270</y>
+      <y>250</y>
       <width>721</width>
       <height>251</height>
      </rect>
@@ -55,9 +55,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QChartView</class>
+   <class>ChartView</class>
    <extends>QGraphicsView</extends>
-   <header location="global">qchartview.h</header>
+   <header location="global">chartview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>GraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">graphicsview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

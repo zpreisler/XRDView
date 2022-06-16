@@ -10,11 +10,15 @@ LIBS += -lhdf5_cpp -lhdf5
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chartview.cpp \
+    graphicsview.cpp \
     main.cpp \
     mainwindow.cpp \
 	 h5data.cpp
 
 HEADERS += \
+    chartview.h \
+    graphicsview.h \
     mainwindow.h \
 	 h5data.h
 
