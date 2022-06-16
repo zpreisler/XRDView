@@ -11,6 +11,7 @@ LIBS += -lhdf5_cpp -lhdf5
 
 SOURCES += \
     chartview.cpp \
+    graphicsscene.cpp \
     graphicsview.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     chartview.h \
+    graphicsscene.h \
     graphicsview.h \
     mainwindow.h \
 	 h5data.h

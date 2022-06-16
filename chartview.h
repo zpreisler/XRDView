@@ -9,8 +9,8 @@ class ChartView : public QChartView
     Q_OBJECT
 
 	public:
-		ChartView(QChart* chart, QWidget *parent = nullptr);
-		ChartView(QWidget *parent = nullptr);
+		explicit ChartView(QChart* chart, QWidget *parent = nullptr);
+		explicit ChartView(QWidget *parent = nullptr);
 };
 
 #endif // CHARTVIEW_H

@@ -8,6 +8,7 @@
 
 #include "chartview.h"
 #include "graphicsview.h"
+#include "graphicsscene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
 
 	Data datacube("xrd.h5","data");
 
-	QGraphicsScene *scene = new QGraphicsScene(this);
+	GraphicsScene *scene = new GraphicsScene(this);
 
 	ui->XRDGraphicsView->setScene(scene);
 
@@ -22,13 +22,11 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
 	pix->setPixmap(slice->pix);
 
 	ChartView *chartView = ui->SpectraChartView;
-	//QtCharts::QChartView *chartView = ui->SpectraChartView;
 
 	QtCharts::QChart *chart = new QtCharts::QChart();
 	QtCharts::QLineSeries *series = new QtCharts::QLineSeries();
 
 	float *spectra = slice->get_pixel(20,20);
-
 	for(int i=0; i < static_cast<int>(slice->datacube->dims[2]); i++){
 		series->append(i,*(spectra + i));
 	}
