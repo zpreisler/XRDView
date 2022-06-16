@@ -9,3 +9,10 @@ ChartView::ChartView(QWidget *parent) : QChartView(parent)
 {
 
 }
+
+void ChartView::clicked(int x,int y)
+{
+
+	std::cout << "Clicked x: " << x << " y: " << y << "\n";	
+
+}

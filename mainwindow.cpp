@@ -37,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
 	chart->setTitle("XRD spectra");
 
 	chartView->setChart(chart);
+
+	QObject::connect(scene,&GraphicsScene::clicked,
+			chartView,&ChartView::clicked);
 }
 
 MainWindow::~MainWindow()

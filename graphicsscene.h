@@ -14,6 +14,9 @@ class GraphicsScene : public QGraphicsScene
 	protected:
 		void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 		void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
+	signals:
+		void clicked(int x, int y);
 };
 
 #endif // GRAPHICSSCENE_H

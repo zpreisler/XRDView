@@ -3,6 +3,7 @@
 
 #include <QChartView>
 #include <QtCharts>
+#include <iostream>
 
 class ChartView : public QChartView
 {
@@ -11,6 +12,9 @@ class ChartView : public QChartView
 	public:
 		explicit ChartView(QChart* chart, QWidget *parent = nullptr);
 		explicit ChartView(QWidget *parent = nullptr);
+
+	public slots:
+		void clicked(int x,int y);
 };
 
 #endif // CHARTVIEW_H
