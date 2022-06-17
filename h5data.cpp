@@ -5,25 +5,25 @@
 using namespace std;
 using namespace H5;
 
-Data::Data(const char *filename){
+Datacube::Datacube(const char *filename){
 
-	Data::read(filename,"data");	
-
-}
-
-Data::Data(const char *filename,const char *dataname){
-
-	Data::read(filename,dataname);	
+	Datacube::read(filename,"data");	
 
 }
 
-Data::~Data(){
+Datacube::Datacube(const char *filename,const char *dataname){
+
+	Datacube::read(filename,dataname);	
+
+}
+
+Datacube::~Datacube(){
 
 	free(data16);
 	delete[] dims;
 }
 
-int Data::read(const char *filename,const char *dataname){
+int Datacube::read(const char *filename,const char *dataname){
 
 	int rank,n;
 
@@ -54,27 +54,27 @@ int Data::read(const char *filename,const char *dataname){
 
 }
 
-SliceAndDice::SliceAndDice(Data *data)
+SliceAndDice::SliceAndDice(Datacube *datacube)
 {
 
-	n_pixel = data->dims[0] * data->dims[1];
+	SliceAndDice::datacube = datacube;
 
-	datacube = data;	
+	n_pixel = datacube->dims[0] * datacube->dims[1];
 	
 	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
-	image = new QImage(data->dims[1],data->dims[0],QImage::Format_RGB32);
+	image = new QImage(datacube->dims[1],datacube->dims[0],QImage::Format_RGB32);
 
 }
 
-SliceAndDice::SliceAndDice(Data *data,int channel)
+SliceAndDice::SliceAndDice(Datacube *datacube,int channel)
 {
 
-	n_pixel = data->dims[0] * data->dims[1];
+	SliceAndDice::datacube = datacube;
 
-	datacube = data;	
+	n_pixel = datacube->dims[0] * datacube->dims[1];
 	
 	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
-	image = new QImage(data->dims[1],data->dims[0],QImage::Format_RGB32);
+	image = new QImage(datacube->dims[1],datacube->dims[0],QImage::Format_RGB32);
 
 	slice(channel);
 	dice();
@@ -104,6 +104,7 @@ int SliceAndDice::slice(int channel)
 
 int SliceAndDice::dice()
 {
+
 	QRgb value;
 	float pixel;
 
@@ -123,14 +124,17 @@ int SliceAndDice::dice()
 	pix = pix.fromImage(*image);
 
 	return 0;
+
 }
 
 int SliceAndDice::slicedice(int channel)
 {
+
 	slice(channel);
 	dice();
 
 	return 0;
+
 }
 
 float* SliceAndDice::get_pixel(int x, int y)

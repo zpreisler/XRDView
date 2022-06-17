@@ -4,7 +4,7 @@
 #include <H5Cpp.h>
 #include <QMainWindow>
 
-class Data
+class Datacube
 {
 	public:
 		int ndims;
@@ -12,31 +12,34 @@ class Data
 		float *data16;
 
 		int read(const char*, const char*);
-		Data(const char*);
-		Data(const char*, const char*);
+		Datacube(const char*);
+		Datacube(const char*, const char*);
 
-		~Data();
+		~Datacube();
 };
 
 class SliceAndDice
 {
+	
+	private:
+
+		int slice(int);
+		int dice();
+
 	public:
 
 		int n_pixel;
 		float *image_data;
 		float image_max;
 
-		Data *datacube;
-
+		Datacube *datacube;
 		QImage *image;
 		QPixmap pix;
 
-		SliceAndDice(Data*);
-		SliceAndDice(Data*,int);
+		SliceAndDice(Datacube*);
+		SliceAndDice(Datacube*,int);
 
 		int slicedice(int);
-		int slice(int);
-		int dice();
 
 		float *get_pixel(int,int);
 };

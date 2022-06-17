@@ -5,16 +5,17 @@
 #include <QtCharts>
 #include <iostream>
 
+#include <h5data.h>
+
 class ChartView : public QChartView
 {
     Q_OBJECT
 
 	public:
-		explicit ChartView(QChart* chart, QWidget *parent = nullptr);
-		explicit ChartView(QWidget *parent = nullptr);
+		explicit ChartView(QChart* chart, QWidget *parent);
+		explicit ChartView(QWidget *parent);
+		explicit ChartView(Datacube *datacube, QWidget *parent);
 
-	public slots:
-		void clicked(int x,int y);
 };
 
 #endif // CHARTVIEW_H

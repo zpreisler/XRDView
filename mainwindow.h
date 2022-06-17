@@ -6,9 +6,12 @@
 #include <QChartView>
 #include <QLineSeries>
 
+#include "chart.h"
 #include "chartview.h"
 #include "graphicsview.h"
 #include "graphicsscene.h"
+
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
