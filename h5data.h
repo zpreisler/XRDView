@@ -28,6 +28,7 @@ class Datacube
 
 		int read(const char*, const char*);
 		int slicedice(int);
+		float *get_pixel(int,int);
 
 		Datacube(const char*);
 		Datacube(const char*, const char*);

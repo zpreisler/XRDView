@@ -119,6 +119,13 @@ int Datacube::slicedice(int channel)
 
 }
 
+float* Datacube::get_pixel(int x, int y)
+{
+
+	return data16 + dims[2] * (y * dims[1] + x);
+
+}
+
 SliceAndDice::SliceAndDice(Datacube *datacube)
 {
 
