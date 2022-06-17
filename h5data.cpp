@@ -7,13 +7,23 @@ using namespace H5;
 
 Datacube::Datacube(const char *filename){
 
-	Datacube::read(filename,"data");	
+	read(filename,"data");	
+
+	n_pixel = dims[0] * dims[1];
+	
+	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+	image = new QImage(dims[1],dims[0],QImage::Format_RGB32);
 
 }
 
 Datacube::Datacube(const char *filename,const char *dataname){
 
-	Datacube::read(filename,dataname);	
+	read(filename,dataname);	
+
+	n_pixel = dims[0] * dims[1];
+	
+	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+	image = new QImage(dims[1],dims[0],QImage::Format_RGB32);
 
 }
 
@@ -49,6 +59,61 @@ int Datacube::read(const char *filename,const char *dataname){
 	for(int i = 0; i < ndims; i++){
 		cout << i << " : " << dims[i] << "\n";
 	}
+
+	return 0;
+
+}
+
+int Datacube::slice(int channel)
+{
+
+	float pixel;
+	image_max = 0;
+
+	for(int i=0; i < n_pixel; i++){
+
+		pixel = *(data16 + i * dims[2] + channel);
+
+		if(pixel > image_max){
+			image_max = pixel;
+		}
+		image_data[i] = pixel;
+
+	}
+
+	return 0;
+}
+
+int Datacube::dice()
+{
+
+	QRgb value;
+	float pixel;
+
+	int x = dims[1];
+	int y = dims[0];
+
+	for(int i=0; i < x; i++){
+		for(int j=0; j< y; j++){
+
+			pixel = (image_data[ j * x + i] * 255) / image_max;
+			value = qRgb(pixel,pixel,pixel);
+
+			image->setPixel(i,j,value);
+		}
+	}
+
+	pix = pix.fromImage(*image);
+
+	return 0;
+
+}
+
+int Datacube::slicedice(int channel)
+{
+
+	slice(channel);
+	dice();
 
 	return 0;
 

@@ -6,12 +6,29 @@
 
 class Datacube
 {
-	public:
+
+	private:
+
 		int ndims;
+		int n_pixel;
+		float *image_data;
+		float image_max;
+
+		QImage *image;
+
+		int slice(int);
+		int dice();
+
+	public:
+
 		hsize_t *dims;
 		float *data16;
 
+		QPixmap pix;
+
 		int read(const char*, const char*);
+		int slicedice(int);
+
 		Datacube(const char*);
 		Datacube(const char*, const char*);
 
