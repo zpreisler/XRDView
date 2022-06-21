@@ -1,6 +1,10 @@
 #ifndef H5DATA_H
 #define H5DATA_H
 
+#ifdef _WIN32
+ #include <malloc.h>
+#endif
+
 #include <H5Cpp.h>
 #include <QMainWindow>
 
@@ -28,6 +32,7 @@ class Datacube
 
 		int read(const char*, const char*);
 		int slicedice(int);
+		float *get_pixel(int,int);
 
 		Datacube(const char*);
 		Datacube(const char*, const char*);

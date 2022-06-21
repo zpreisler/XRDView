@@ -2,8 +2,11 @@
 #define GRAPHICSVIEW_H
 
 #include <QGraphicsView>
+#include <QGraphicsSceneMouseEvent>
 #include <QMouseEvent>
 #include <QPoint>
+
+#include <iostream>
 
 class GraphicsView : public QGraphicsView
 {
@@ -13,6 +16,7 @@ class GraphicsView : public QGraphicsView
 	public:
 		 explicit GraphicsView(QGraphicsScene *scene, QWidget *parent = nullptr);
 		 explicit GraphicsView(QWidget *parent = nullptr);
+
 };
 
 #endif // GRAPHICSVIEW_H

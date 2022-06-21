@@ -5,6 +5,7 @@
 #include <QtCharts>
 #include <QChartView>
 #include <QLineSeries>
+#include <QAction>
 
 #include "chart.h"
 #include "chartview.h"
@@ -27,5 +28,14 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+
+
+
+
+
+private slots:
+    void openHDF();
+
 };
 #endif // MAINWINDOW_H

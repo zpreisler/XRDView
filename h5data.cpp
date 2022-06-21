@@ -1,6 +1,7 @@
 #include <iostream>
 #include "h5data.h"
 #include <xmmintrin.h>
+#include <QDebug>
 
 using namespace std;
 using namespace H5;
@@ -11,7 +12,12 @@ Datacube::Datacube(const char *filename){
 
 	n_pixel = dims[0] * dims[1];
 	
-	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #ifdef _WIN32
+        image_data = static_cast<float *>(_aligned_malloc( sizeof(float) * n_pixel,16));
+
+    #else
+      image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #endif
 	image = new QImage(dims[1],dims[0],QImage::Format_RGB32);
 
 }
@@ -22,7 +28,11 @@ Datacube::Datacube(const char *filename,const char *dataname){
 
 	n_pixel = dims[0] * dims[1];
 	
-	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #ifdef _WIN32
+        image_data = static_cast<float *>(_aligned_malloc( sizeof(float) * n_pixel,16));
+    #else
+         image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #endif
 	image = new QImage(dims[1],dims[0],QImage::Format_RGB32);
 
 }
@@ -34,10 +44,11 @@ Datacube::~Datacube(){
 }
 
 int Datacube::read(const char *filename,const char *dataname){
+    qDebug()<<filename;
 
 	int rank,n;
 
-	H5File file(filename, H5F_ACC_RDONLY);
+    H5::H5File file(filename, H5F_ACC_RDONLY);
 
 	DataSet dataset = file.openDataSet(dataname);
 	DataSpace dataspace = dataset.getSpace();
@@ -48,7 +59,11 @@ int Datacube::read(const char *filename,const char *dataname){
 	ndims = dataspace.getSimpleExtentDims(dims, NULL);
 
 	n = dims[0] * dims[1] * dims[2];
-	data16 = static_cast<float *>(aligned_alloc(16, sizeof(float) * n));
+    #ifdef _WIN32
+        data16 = static_cast<float *>(_aligned_malloc( sizeof(float) * n,16));
+    #else
+        data16 = static_cast<float *>(aligned_alloc(16, sizeof(float) * n));
+    #endif
 
 	dataset.read(data16, PredType::NATIVE_FLOAT);
 
@@ -119,14 +134,25 @@ int Datacube::slicedice(int channel)
 
 }
 
+float* Datacube::get_pixel(int x, int y)
+{
+
+	return data16 + dims[2] * (y * dims[1] + x);
+
+}
+
 SliceAndDice::SliceAndDice(Datacube *datacube)
 {
 
 	SliceAndDice::datacube = datacube;
 
 	n_pixel = datacube->dims[0] * datacube->dims[1];
-	
-	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #ifdef _WIN32
+        image_data = static_cast<float *>(_aligned_malloc( sizeof(float) * n_pixel,16));
+    #else
+       image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #endif
+
 	image = new QImage(datacube->dims[1],datacube->dims[0],QImage::Format_RGB32);
 
 }
@@ -137,8 +163,12 @@ SliceAndDice::SliceAndDice(Datacube *datacube,int channel)
 	SliceAndDice::datacube = datacube;
 
 	n_pixel = datacube->dims[0] * datacube->dims[1];
-	
-	image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #ifdef _WIN32
+        image_data = static_cast<float *>(_aligned_malloc( sizeof(float) * n_pixel,16));
+    #else
+       image_data = static_cast<float *>(aligned_alloc(16, sizeof(float) * n_pixel));
+    #endif
+
 	image = new QImage(datacube->dims[1],datacube->dims[0],QImage::Format_RGB32);
 
 	slice(channel);
