@@ -14,8 +14,13 @@ Chart::Chart(Datacube *datacube, QGraphicsItem *parent, Qt::WindowFlags wFlags) 
 	drawLine(line,0,0);
 
 	this->addSeries(line);
+   this->createDefaultAxes();
 	this->legend()->hide();
 	this->setTitle("XRD spectra");
+
+
+   // layout()->setContentsMargins(0, 0, 0, 0);
+    setBackgroundRoundness(0);
 
 }
 

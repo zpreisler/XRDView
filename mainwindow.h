@@ -28,6 +28,18 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    GraphicsView *view;
+    GraphicsScene *scene;
+    QLabel *label;
+
+
+protected:
+  void resizeEvent(QResizeEvent* event) override;
+private slots:
+  void updateLabel(QPointF p);
+
+
+
 
 
 

@@ -21,6 +21,7 @@ class Chart : public QChart
 
 	public slots:
 		void newLine(int x,int y);
+
 };
 
 #endif // CHART_H

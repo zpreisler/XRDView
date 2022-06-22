@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include <h5data.h>
+#include "chart.h"
 
 class ChartView : public QChartView
 {
@@ -24,6 +25,7 @@ class ChartView : public QChartView
 
 	signals:
 		void clicked(int channel);
+
 
 };
 

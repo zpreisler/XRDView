@@ -6,7 +6,12 @@
 #include <QMouseEvent>
 #include <QPoint>
 
+
 #include <iostream>
+
+#include "chart.h"
+#include "chartview.h"
+#include "graphicsscene.h"
 
 class GraphicsView : public QGraphicsView
 {
@@ -16,6 +21,13 @@ class GraphicsView : public QGraphicsView
 	public:
 		 explicit GraphicsView(QGraphicsScene *scene, QWidget *parent = nullptr);
 		 explicit GraphicsView(QWidget *parent = nullptr);
+
+          void resize();
+    private:
+          void wheelEvent(QWheelEvent *e);
+          void scaleView(qreal scaleFactor);
+
+
 
 };
 

@@ -6,6 +6,8 @@
 #include <QGraphicsSceneMouseEvent>
 #include <iostream>
 
+
+
 #include "h5data.h"
 
 class GraphicsScene : public QGraphicsScene
@@ -18,17 +20,20 @@ class GraphicsScene : public QGraphicsScene
 
 	public:
 
-		 QGraphicsPixmapItem *pix;
+         QGraphicsPixmapItem *pix;
+
 
 		 explicit GraphicsScene(QObject *parent = nullptr);
 		 explicit GraphicsScene(Datacube *datacube, QObject *parent = nullptr);
-
-	protected:
-		void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-		void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    private:
+     //Scale factor to identify the correspondence between the image point and the real pixel
+      qreal scaleFactor=1;
+      void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+       void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
 	signals:
-		void clicked(int x, int y);
+        void clicked(int x, int y);
+        void moving(QPointF point);
 
 	public slots:
 		void newChannel(int channel);
