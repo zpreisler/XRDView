@@ -19,8 +19,8 @@ void GraphicsView::resize()
     qDebug()<<"Resize GraphicsView0";
   if(scene!=nullptr){
       qDebug()<<"Resize GraphicsView";
-      qreal height=scene->pix->pixmap().height();
-      qreal width=scene->pix->pixmap().width();
+//      qreal height=scene->pix->pixmap().height();
+  //    qreal width=scene->pix->pixmap().width();
     //  this->setGeometry(this->x(),this->y(),width,height);
   }
 
