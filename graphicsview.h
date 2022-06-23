@@ -22,7 +22,7 @@ class GraphicsView : public QGraphicsView
 		 explicit GraphicsView(QGraphicsScene *scene, QWidget *parent = nullptr);
 		 explicit GraphicsView(QWidget *parent = nullptr);
 
-          void resize();
+          //void resize();
     private:
           void wheelEvent(QWheelEvent *e);
           void scaleView(qreal scaleFactor);

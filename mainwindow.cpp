@@ -47,7 +47,7 @@ void MainWindow::openHDF()
 
           GraphicsScene *scene = new GraphicsScene(datacube,this);
           ui->XRDGraphicsView->setScene(scene);
-          ui->XRDGraphicsView->resize();
+          //ui->XRDGraphicsView->resize();
 
           ChartView *chartView = ui->SpectraChartView;
 
@@ -57,20 +57,26 @@ void MainWindow::openHDF()
 
 
 
-          connect(scene,&GraphicsScene::clicked,
-                      chart,&Chart::newLine);
+         // connect(scene,&GraphicsScene::clicked,
+           //           chart,&Chart::newLine);
 
-          connect(scene,SIGNAL(moving(QPointF)),
-                      this,SLOT(updateLabel(QPointF)));
+
 
           connect(chartView,&ChartView::clicked,
                       scene,&GraphicsScene::newChannel);
+
+          connect(scene,SIGNAL(moving(QPoint)),
+                      this,SLOT(updateLabel(QPoint)));
+          connect(scene,SIGNAL(clickedPoint(QPoint, QColor)),
+                      chart,SLOT(addLine(QPoint, QColor)));
+          connect(scene,SIGNAL(removedPoint(QColor)),
+                      chart,SLOT(removeLine(QColor)));
 
       }
 
 }
 
-void MainWindow::updateLabel(QPointF p){
+void MainWindow::updateLabel(QPoint p){
        qDebug()<<p;
        ui->label->setText(QString::number(p.x())+"-"+QString::number(p.y()));
 

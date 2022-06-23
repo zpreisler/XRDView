@@ -21,6 +21,8 @@ class Chart : public QChart
 
 	public slots:
 		void newLine(int x,int y);
+       void addLine(QPoint point, QColor color);
+       void removeLine(QColor color);
 
 };
 

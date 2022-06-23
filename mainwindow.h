@@ -36,7 +36,7 @@ private:
 protected:
   void resizeEvent(QResizeEvent* event) override;
 private slots:
-  void updateLabel(QPointF p);
+  void updateLabel(QPoint p);
 
 
 

@@ -46,3 +46,30 @@ void Chart::newLine(int x,int y)
 	this->addSeries(line);
 
 }
+
+void Chart::addLine(QPoint point, QColor color){
+    qDebug()<<"Add new series";
+    QLineSeries *line = new QLineSeries();
+     drawLine(line,point.x(),point.y());
+     line->setColor(color);
+     this->addSeries(line);
+
+
+}
+void Chart::removeLine(QColor color){
+    qDebug()<<"remove line";
+    QList<QAbstractSeries *> lista=this->series();
+    for(QAbstractSeries *element:lista){
+        QLineSeries *ls= dynamic_cast< QLineSeries *>(element);
+        if(ls){
+            if(ls->color()==color){
+
+                this->removeSeries(ls);
+                return;
+            }
+        }
+
+
+    }
+
+}

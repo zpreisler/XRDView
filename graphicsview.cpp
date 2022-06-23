@@ -13,8 +13,10 @@ GraphicsView::GraphicsView(QWidget *parent) : QGraphicsView(parent)
 
 }
 
+/*
 void GraphicsView::resize()
 {
+
   GraphicsScene *scene=dynamic_cast<GraphicsScene *>(this->scene());
     qDebug()<<"Resize GraphicsView0";
   if(scene!=nullptr){
@@ -24,7 +26,7 @@ void GraphicsView::resize()
     //  this->setGeometry(this->x(),this->y(),width,height);
   }
 
-}
+}*/
 
 void GraphicsView::wheelEvent( QWheelEvent *e)
 {
@@ -40,4 +42,10 @@ void GraphicsView::scaleView(qreal scaleFactor)
         return;
 
     this->scale(scaleFactor, scaleFactor);
+     GraphicsScene *scene=dynamic_cast<GraphicsScene *>(this->scene());
+     if(scene!=nullptr){
+         //scene->scaleFactor=scaleFactor;
+     }
+
+
 }
