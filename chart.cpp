@@ -25,6 +25,7 @@ Chart::Chart(Datacube *datacube, QGraphicsItem *parent, Qt::WindowFlags wFlags) 
 
    // layout()->setContentsMargins(0, 0, 0, 0);
     setBackgroundRoundness(0);
+    this->updateAxes();
 
 
 
@@ -59,9 +60,10 @@ void Chart::addLine(QPoint point, QColor color){
      drawLine(line,point.x(),point.y());
      line->setColor(color);
      this->addSeries(line);
-     this->createDefaultAxes();
+
      if(this->verticalLine->count()>0)
                     this->updateVerticalLine();
+     this->updateAxes();
 
 
 }
@@ -92,9 +94,14 @@ void Chart::updateAxes(){
     this->createDefaultAxes();
     QValueAxis *xa=dynamic_cast<QValueAxis *>(this->axes(Qt::Horizontal).first());
     if(xa){
-        xa->setTickInterval(100);
+        qDebug()<<"set tick";
+
+      //  xa->setRange(0,1000);
+        xa->setTickType(QValueAxis::TickType::TicksDynamic);
+         xa->setTickInterval(200);
+
     }
-   // this->updateVerticalLine();
+   this->update();
 
 
 
