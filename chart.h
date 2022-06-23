@@ -18,11 +18,18 @@ class Chart : public QChart
 
 		explicit Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
 		explicit Chart(Datacube *datacube, QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
-
+   private:
+      QLineSeries *verticalLine;
+      void updateVerticalLine();
 	public slots:
 		void newLine(int x,int y);
        void addLine(QPoint point, QColor color);
        void removeLine(QColor color);
+       void addVerticalLine(qint32 channel);
+       void updateAxes();
+
+
+
 
 };
 

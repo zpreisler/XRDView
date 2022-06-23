@@ -64,6 +64,7 @@ void MainWindow::openHDF()
 
           connect(chartView,&ChartView::clicked,
                       scene,&GraphicsScene::newChannel);
+          connect(chartView,SIGNAL(clicked(qint32)), chart, SLOT(addVerticalLine(qint32)));
 
           connect(scene,SIGNAL(moving(QPoint)),
                       this,SLOT(updateLabel(QPoint)));

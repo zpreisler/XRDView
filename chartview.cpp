@@ -33,6 +33,9 @@ void ChartView::mousePressEvent(QMouseEvent *event)
 
 	emit clicked(channel);
 
+
 	QChartView::mousePressEvent(event);
 
 }
+
+

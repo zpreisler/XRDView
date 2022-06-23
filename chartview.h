@@ -22,6 +22,8 @@ class ChartView : public QChartView
 	protected:
 		void mouseMoveEvent(QMouseEvent *event);
 		void mousePressEvent(QMouseEvent *event);
+     private:
+
 
 	signals:
 		void clicked(int channel);

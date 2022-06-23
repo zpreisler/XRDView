@@ -28,6 +28,8 @@ void GraphicsView::resize()
 
 }*/
 
+
+
 void GraphicsView::wheelEvent( QWheelEvent *e)
 {
     qreal scale = (e->angleDelta().ry() > 0) ? 1.2 : 1/1.2;
