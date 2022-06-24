@@ -24,8 +24,10 @@ void GraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     //std::cout << "X: " << event->scenePos().x() << " Y: " << event->scenePos().y() << "\n";
       qDebug()<<"moving ";
-      qDebug()<<event->scenePos().toPoint();
-      emit moving(event->scenePos().toPoint());
+
+      qDebug()<<convertToPoint(event->scenePos());
+
+      emit moving(convertToPoint(event->scenePos()));
 }
 
 void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -62,7 +64,7 @@ void GraphicsScene::stateMachine(QGraphicsSceneMouseEvent *e)
 
     if(e->button() != Qt::LeftButton) return;
     QPointF point=e->scenePos();
-    if(!isInside(point.toPoint())) return;
+    if(!isInside(convertToPoint(point))) return;
     QGraphicsRectItem *selectedRectangle= findRectangle(e->scenePos());
 
     if(selectedRectangle)
@@ -73,8 +75,10 @@ void GraphicsScene::stateMachine(QGraphicsSceneMouseEvent *e)
         QColor color=generateColor();
         //QPoint point(e->scenePos().x(),e->scenePos().y());
 
-       // qDebug()<<e->scenePos().toPoint();
-        QPoint point=e->scenePos().toPoint();
+
+        QPoint point=convertToPoint(e->scenePos());
+        qDebug()<<point;
+
         qDebug()<<"clicked point";
         qDebug()<<point;
         this->addRect(point.x(), point.y(), 1,1, QPen(QBrush(color),1,Qt::DashLine), QBrush(color));
@@ -123,4 +127,11 @@ void GraphicsScene::removeRect(QGraphicsRectItem *rect){
      emit removedPoint(color);
 
 
+}
+
+QPoint GraphicsScene::convertToPoint(QPointF n){
+    qint32 x=floor(n.x());
+    qint32 y=floor(n.y());
+    QPoint p(x,y);
+    return p;
 }

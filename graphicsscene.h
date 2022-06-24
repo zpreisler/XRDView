@@ -18,14 +18,6 @@ class GraphicsScene : public QGraphicsScene
 {
     Q_OBJECT
 
-    const QPen dashed = QPen(QBrush(QColor(255,255,255,180)),1,Qt::DashLine);
-    const QPen normal = QPen(QBrush(QColor(0,0,0,180)),1);
-    const QPen seleceted = QPen(QBrush(QColor(0,0,0,180)),2);
-    const QBrush brush = QBrush(QColor(255,255,255,120));
-
-
-
-
 
 	public:
 
@@ -51,6 +43,9 @@ class GraphicsScene : public QGraphicsScene
       QGraphicsRectItem *findRectangle(QPointF point);
       QColor generateColor();
       void removeRect(QGraphicsRectItem *rect);
+
+     //this method is necessary because if the decimal part is greater than .50 with 'toPont' method, conversion is wrong
+      QPoint convertToPoint(QPointF n);
 
 	signals:
         void clicked(int x, int y);

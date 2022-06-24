@@ -10,6 +10,8 @@ GraphicsView::GraphicsView(QWidget *parent) : QGraphicsView(parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setStyleSheet("border: 1px solid black");
+    setContentsMargins(0, 0, 0, 0);
+
 
 }
 

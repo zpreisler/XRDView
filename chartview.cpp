@@ -7,9 +7,12 @@ ChartView::ChartView(QChart *chart, QWidget *parent) : QChartView(chart, parent)
 
 ChartView::ChartView(QWidget *parent) : QChartView(parent)
 {
-    setStyleSheet("border: 1px solid black");
+
     setRenderHint(QPainter::Antialiasing);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //setStyleSheet("background-color:white");
+    setStyleSheet("border: 1px solid black");
+    setContentsMargins(0, 0, 0, 0);
 
 }
 
