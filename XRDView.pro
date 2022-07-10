@@ -11,19 +11,23 @@ LIBS += -lhdf5_cpp -lhdf5
 SOURCES += \
     chart.cpp \
     chartview.cpp \
+    databasexrd.cpp \
     graphicsscene.cpp \
     graphicsview.cpp \
     main.cpp \
     mainwindow.cpp \
-	 h5data.cpp
+	 h5data.cpp \
+    phase.cpp
 
 HEADERS += \
     chart.h \
     chartview.h \
+    databasexrd.h \
     graphicsscene.h \
     graphicsview.h \
     mainwindow.h \
-	 h5data.h
+	 h5data.h \
+    phase.h
 
 FORMS += \
     mainwindow.ui

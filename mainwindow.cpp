@@ -3,6 +3,10 @@
 
 #include "h5data.h"
 
+#include "databasexrd.h"
+
+#include <QDebug>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWindow)
@@ -16,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
     //ui->label->setText("");
     ui->SpectraChartView->setAlignment(Qt::AlignHCenter);
     this->setCentralWidget(ui->centralwidget);
+
+ //   DatabaseXRD *p=new DatabaseXRD();
+   // p->read_cifs(QDir("C:\\Users\\salvo\\OneDrive\\Documenti\\GitHub\\Dario\\Database"));
+
 
 
 }
