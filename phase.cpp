@@ -1,5 +1,6 @@
 #include "phase.h"
 #include <cmath>
+#include <QtAlgorithms>
 
 Phase::Phase()
 {
@@ -64,12 +65,30 @@ void  Phase::replace_list(QString key,QList<QVariant> list){
     for(QVariant v:list)  insert(key,v);
 
 }
+bool Phase::comparator(qreal a, qreal b){
+
+    return a<b;
+}
+
+QList<qreal> Phase::sort_desc(QList<qreal> list){
+    QList<qreal> lista1,lista2;
+    lista1=list;
+    for(int i=0;i<lista1.length();i++){
+        qreal max = *std::max_element(lista1.begin(), lista1.end());
+        int pos=lista1.indexOf(max);
+        lista1.removeAt(pos);
+
+        lista2.insert(i,max);
 
 
+        }
+   return lista2;
+  }
 
 Phase::theta_struct Phase::get_theta(QList<qreal> *l, QList<qreal> *scale, QList<qreal> *min_theta , QList<qreal> *max_theta, QList<qreal> *min_intensity , QList<qreal> *first_n_peaks)
 {
     Phase::theta_struct ret;
+
 
     if(contains("l_last" )and contains("scale_last") and contains("min_theta_last")and contains("max_theta_last") and contains("min_intensity_last")and contains("first_n_peaks_last")and contains("intensity") and contains("theta"))
     {
@@ -103,7 +122,9 @@ Phase::theta_struct Phase::get_theta(QList<qreal> *l, QList<qreal> *scale, QList
                 theta.append(360.0*std::asin(g)/M_PI);
                 intensity.append(i*scale->at(k)/1000);
             }
+            /*
             bool mask[theta.length()];
+
             for(int i=0;i<theta.length();i++) mask[i]=true;
             if(min_theta)
                for(int i=0;i<theta.length();i++) mask[i]=mask[i] and( theta.at(i) > min_theta->at(i));
@@ -112,19 +133,40 @@ Phase::theta_struct Phase::get_theta(QList<qreal> *l, QList<qreal> *scale, QList
             if(min_intensity)
                for(int i=0;i<theta.length();i++) mask[i]=mask[i] and (theta.at(i) > min_intensity->at(i));
 
-            //da completare
+            */
+            int len=theta.length();
+            QVector<bool> mask(len);
+            for(int i=0;i<len;i++) mask[i]=true;
+            if(min_theta)
+               for(int i=0;i<theta.length();i++) mask[i]=mask[i] and( theta.at(i) > min_theta->at(i));
+            if(max_theta)
+               for(int i=0;i<theta.length();i++) mask[i]=mask[i] and (theta.at(i) < max_theta->at(i));
+            if(min_intensity)
+               for(int i=0;i<theta.length();i++) mask[i]=mask[i] and (theta.at(i) > min_intensity->at(i));
+
+
             if(theta.length()>0){
+
+
                 if(values("first_n_peaks_list").length()>0){
                     //?????? self.intensity, self.theta = array(sorted(zip(self.intensity, self.theta), reverse = True)).T[:, 0:first_n_peaks]
-                    QList t=theta;
-                    std::sort(t.first(),t.last(),std::greater <>());
-                    QList i=intensity;
-                    std::sort(i.first(),i.last(),std::greater <>());
+                    QList<qreal> t=Phase::sort_desc(theta);
+
+                   // std::sort(t.first(),t.last(),std::greater <>());
+
+
+                    QList<qreal> i=Phase::sort_desc(intensity);
+                //  std::sort(i.first(),i.last(),std::greater <>());
+
+
                     int min=std::min(t.length(),i.length())-1;
                     t=t.mid(0,min);
                     i=i.mid(0,min);
                     ret.theta=t;
                     ret.intensity=i;
+
+
+
 
                 }
             }

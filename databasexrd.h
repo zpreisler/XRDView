@@ -1,6 +1,6 @@
 #ifndef DATABASEXRD_H
 #define DATABASEXRD_H
-#include "phaselist.h"
+
 #include "phase.h"
 #include <QString>
 #include <QDir>
