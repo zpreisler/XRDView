@@ -171,14 +171,6 @@ Phase::theta_struct Phase::get_theta(QList<qreal> *l, QList<qreal> *scale, QList
                 }
             }
 
-
-
-
-
-
-
-
-
     }
 
     return(ret);

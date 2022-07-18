@@ -1,4 +1,5 @@
 #include "databasexrd.h"
+
 #include <QTextStream>
 #include <QFile>
 #include <QDir>
@@ -11,8 +12,7 @@ DatabaseXRD::DatabaseXRD()
 void  DatabaseXRD::read_cifs(QDir path)
 {
 
-
-    QDir directory(path);
+	QDir directory(path);
     QStringList files = directory.entryList(QStringList() << "*.cif",QDir::Files);
 
     foreach(QString filename, files) {
@@ -40,20 +40,12 @@ void  DatabaseXRD::read_cifs(QDir path)
 
                                st.replace("'","");
 
-
                                if(st.length()>0)
                                {
                                     phase.insert_val(y,QVariant(st));
-
-
                                }
 
                            }
-
-
-
-
-
 
                        }else if(!y.compare("name")){
 
@@ -85,19 +77,17 @@ void  DatabaseXRD::read_cifs(QDir path)
         }
 
     }
-
-
-
-
-
-
 }
+
 QList<Phase> DatabaseXRD::random()
 {
     QList<QString> list=uniqueKeys();
     quint64 len=list.length();
     quint64 v1 = rand() % len;
-    QList val=values(list.at(v1));
+    QList<Phase> val;
+
+	 val = values(list.at(v1));
+
     return(val);
 }
 

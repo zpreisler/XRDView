@@ -9,6 +9,7 @@
 #include <QRandomGenerator>
 #include <QHash>
 #include <QLineSeries>
+#include <QDebug>
 
 
 

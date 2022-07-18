@@ -4,10 +4,6 @@
 #include <QString>
 #include <QVariant>
 
-
-
-
-
 class Phase : QMultiHash<QString,QVariant>
 {
 
@@ -23,6 +19,7 @@ public:
     Phase(QStringList keys, QVariantList values);
     quint64 len();
     theta_struct  get_theta(QList<qreal> *l=new QList<qreal>{1.541874}, QList<qreal> *scale=new QList<qreal>{1.0}, QList<qreal> *min_theta=nullptr , QList<qreal> *max_theta=nullptr, QList<qreal> *min_intensity=nullptr , QList<qreal> *first_n_peaks=nullptr);
+
     bool compare(QList<QVariant> a,QList<QVariant> b);
     QList<QVariant> convert(QList<qreal> list);
     QList<qreal> convert(QList<QVariant> list);
