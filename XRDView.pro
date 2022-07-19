@@ -9,6 +9,7 @@ LIBS += -lhdf5_cpp -lhdf5
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calibration.cpp \
     chart.cpp \
     chartview.cpp \
     databasexrd.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
     phase.cpp
 
 HEADERS += \
+    calibration.h \
     chart.h \
     chartview.h \
     databasexrd.h \
@@ -42,3 +44,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 #to use H5 in windows
 DEFINES += H5_BUILT_AS_DYNAMIC_LIB
+INCLUDEPATH += C:\Users\salvo\AppData\Local\Eigen

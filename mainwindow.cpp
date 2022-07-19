@@ -21,8 +21,7 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent), ui(new Ui::MainWind
     ui->SpectraChartView->setAlignment(Qt::AlignHCenter);
     this->setCentralWidget(ui->centralwidget);
 
- //   DatabaseXRD *p=new DatabaseXRD();
-   // p->read_cifs(QDir("C:\\Users\\salvo\\OneDrive\\Documenti\\GitHub\\Dario\\Database"));
+
 
 
 
